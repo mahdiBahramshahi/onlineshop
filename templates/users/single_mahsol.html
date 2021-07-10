@@ -1,0 +1,120 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/elegant-icons.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+
+    <title>{{mahsol.title}}</title>
+    <style>
+        body{
+            direction: rtl;
+        }
+        p{
+            margin: 10px;
+        }
+        section{
+            direction: ltr;
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+    <div class="container-fluid" style="margin-top: 30px;">
+        <div class="row">
+
+            <div class="col-12 col-sm-12 d-none d-sm-block d-md-none d-block d-sm-none text-right">
+                <h4 class="text-center">{{mahsol.title}}</h4>
+                <p class="text-center">ویژگی های محصول:</p>
+                <p class="text-center">{{mahsol.description}}</p>
+                
+            </div>
+
+            <div class=" col-6 col-sm-6 col-md-4">
+                <div class="card rounded">
+                    <img src="{{mahsol.image}}" alt="{{mahsol.title}}">
+                    <p class="text-center">{{mahsol.title}}</p>
+                </div>
+            </div>
+
+
+
+
+            <!-- only xs -->
+            <div class=" col-6 col-sm-6 col-md-4 text-right    d-block d-sm-none">
+                <div class="card rounded">
+                    <!-- <img src="{{mahsol.image}}" alt="">
+                    <p class="text-center">{{mahsol.title}}</p> -->
+                    <p>با آنلاین شاپ سریع و مطمعن خرید کنید ✅</p>
+                </div>
+            </div>
+
+            <div class="card col-12 col-sm-4 col-md-4 text-right rounded d-none d-xs-block d-sm-none d-md-block">
+                <h4 style="margin-top: 10px;" class="text-center">{{mahsol.title}}</h4>
+                <p>ویژگی های محصول:</p>
+                <p>{{mahsol.description}}</p>
+                
+            </div>
+            
+
+            <div class=" col-12 col-sm-6 col-md-4 text-right" style="background: #ffffff;">
+                <div class="card rounded" style="background: #e7e3e3;">
+
+                    <center><h6 style="margin: 10px;">فروشنده</h6><br>
+                    <i>____________________________</i><br><br>
+    
+                    <h8>آنلاین شاپ</h8>
+                    <p>۸۰٪ رضایت خرید  |  عملکرد :<i style="color: green;"> عالی</i> </p>
+                    <i>____________________________</i>
+    
+                    <p> ضمانت اصالت کالا ✅</p>
+                    <i>____________________________</i><br>
+                    <h3>{{mahsol.price}}</h3>
+                    </center>
+                    <center><button class="btn btn-success" style="margin-top: 10px; width: 80%; margin-bottom: 20px;" type="button" >افزودن به سبد</button></center>
+                </div>
+            </div>
+        </div>
+    </div>
+<br><br>
+    <section class="categories">
+        <div class="container">
+            <h5 class="text-right">محصولات مرتبط</h5>
+            <h5 class="text-right" style="color: green;">_________</h5><br>
+            <div class="row">
+                
+                <div class="categories__slider owl-carousel">
+                    {% for mah in all_mahsolat %}
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="{{mah.image}}">
+                            <h5><a href="{{ url_for('users.single_mahsol' , slug = mah.slug) }}">{{mah.title}}</a></h5>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='s/jquery-ui.min.js') }}j"></script>
+    <script src="{{ url_for('static', filename='js/jquery.slicknav.js') }}"></script>
+    <script src="{{ url_for('static', filename='s/mixitup.min.js') }}j"></script>
+    <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
