@@ -11,3 +11,11 @@ class Mahsolat(db.Model):
     price = Column(String(128) , nullable=False , unique= False)
     image = Column(String(128) , nullable=False , unique=False)
 
+class MahsolGroups(db.Model):
+    __tablename__='mahsolgroups'
+    id = Column(Integer , primary_key=True)
+    title = Column(String(32) , nullable=False , unique= False)
+    image = Column(String(512) , nullable=False , unique= False)
+
+
+

@@ -217,13 +217,19 @@
                                           <form class="modal-content animate" action="{{url_for('admin.create_mahsol')}}" method="POST">
 
                                             <div class="container">
-                                              <!-- <label for="title" style=" float: right;"><b style="color: #000;">نام محصول:</b></label> -->
+                                              <label for="mahsol_title" style=" float: right;"><b style="color: #000;">نام محصول:</b></label>
                                               <input type="text" placeholder="نام محصول" name="mahsol_title" required>
                                         
-                                              <!-- <label for="category" style=" float: right;" ><b style="color: #000;">دسته بندی:</b></label> -->
-                                              <input type="text" placeholder="دسته بندی" name="mahsol_category" required>
+                                              <label for="mahsol_category" style=" float: right;" ><b style="color: #000;">دسته بندی:</b></label>
+                                              <!-- <input type="text" placeholder="دسته بندی" name="mahsol_category" required> -->
                                               <!-- {{form.mahsol_category}} -->
-                                                
+                                              <select name="mahsol_category" class="form-control" >
+                                                {% for group in groups %}
+                                                <option value="{{group.title}}" >{{group.title}}</option>
+                                                {% endfor %}
+                                                </select>
+                                                <label for="mahsol_price" style=" float: right;" ><b style="color: #000;">قیمت محصول:(تومان)</b></label>
+                                                        
                                               <input type="text" placeholder="قیمت محصول" name="mahsol_price" required>
 
                                               <button type="submit">اضافه کردن محصول</button>
@@ -250,9 +256,8 @@
                 <!-- Gallery item -->
                 {% for mahsol in all_mahsolat %}
                 <div class="col-xl-3 col-lg-4 col-md-4 mb-4 col-sm-6">
-                    <div class="bg-white rounded shadow-sm"><img
-                            src="{{mahsol.image}}"
-                            alt="" class="img-fluid card-img-top">
+                    <div class="bg-white rounded shadow-sm">
+                        <img src="{{mahsol.image}}" alt="{{mahsol.title}}" class="img-fluid card-img-top featured__item__pic">
                         <div class="p-4 text-right">
                             <h5> <a href="{{ url_for('admin.single_mahsol' , slug = mahsol.slug) }}" class="text-dark">{{mahsol.title}}</a></h5>
                             <p class="small text-muted mb-0">{{ mahsol.description }}
@@ -261,7 +266,7 @@
                                 class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
                                 <p class="small mb-0"><span
                                         class="font-weight-bold">{{mahsol.price}}</span></p>
-                                <div class="badge badge-danger px-3 rounded-pill font-weight-normal">New</div>
+                                <div class="badge badge-danger px-3 rounded-pill font-weight-normal">حذف</div>
                             </div>
                         </div>
                     </div>
