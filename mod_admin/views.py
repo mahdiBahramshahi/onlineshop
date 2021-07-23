@@ -164,10 +164,10 @@ def create_mahsol_group():
 
         
 
-@admin.route('/<string:title>')
+@admin.route('/<string:slug>')
 @admin_only_view
-def single_group(title):
-    singlegroup = Mahsolat.query.filter(Mahsolat.slug == title).first_or_404()
+def single_group(slug):
+    singlegroup = MahsolGroups.query.filter(MahsolGroups.title == slug).first_or_404()
     return render_template('admin/single_group.html' , singlegroup=singlegroup )
 
 

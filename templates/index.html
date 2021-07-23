@@ -208,15 +208,9 @@
                             <span>دسته بندی</span>
                         </div>
                         <ul>
-                            <li><a href="#">سبزیجات</a></li>
-                            <li><a href="#">حمام</a></li>
-                            <li><a href="#">آرایشی بهداشتی</a></li>
-                            <li><a href="#">روغن های گیاهی</a></li>
-                            <li><a href="#">گیاهان دارویی</a></li>
-                            <li><a href="#">عرقیات گیاهی</a></li>
-                            <li><a href="#">ادویه و چاشنی</a></li>
-                            <li><a href="#">چای</a></li>
-                            <li><a href="#">مرکبات</a></li>
+                            {% for group in groups %}
+                            <li><a href="{{ url_for('single_group' , slug = group.title) }}">{{ group.title }}</a></li>
+                            {% endfor %}
                             <!-- <li><a href="#">Oatmeal</a></li>
                             <li><a href="#">Fresh Bananas</a></li> -->
                         </ul>
@@ -266,7 +260,7 @@
                     {% for group in groups %}
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="{{group.image}}">
-                            <h5><a href="#">{{group.title}}</a></h5>
+                            <h5><a href="{{ url_for('single_group' , slug = group.title) }}">{{group.title}}</a></h5>
                         </div>
                     </div>
                     {% endfor %}
