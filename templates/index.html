@@ -25,6 +25,29 @@
         /* body{
             direction:rtl;
         } */
+        .gallery {
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: repeat(10, 80vw);
+            grid-template-rows: 1fr;
+            grid-column-gap: 1rem;
+            grid-row-gap: 1rem;
+            overflow: scroll;
+            height: 70vh;
+            scroll-snap-type: both mandatory;
+            scroll-padding: 1rem;
+        }
+
+        .active {
+            scroll-snap-type: unset;
+        }
+
+        li.m {
+            /* scroll-snap-align: center; */
+            display: inline-block;
+            border-radius: 3px;
+            font-size: 0;
+        }
     </style>
 </head>
 
@@ -140,20 +163,20 @@
         </div>
         <div class="container">
             <div style="direction: rtl;">
-            {% with messages = get_flashed_messages(True) %}
-            {% if messages %}
-            <div class="row">
-                {% for message in messages %}
-                <div class="card {{message[0]}} text-white">
-                    <div class="card-body">
-                        {{ message[1] }}
+                {% with messages = get_flashed_messages(True) %}
+                {% if messages %}
+                <div class="row">
+                    {% for message in messages %}
+                    <div class="card {{message[0]}} text-white">
+                        <div class="card-body">
+                            {{ message[1] }}
+                        </div>
                     </div>
+                    {% endfor %}
+
                 </div>
-                {% endfor %}
-        
-            </div>
-            {% endif %}
-            {% endwith %}
+                {% endif %}
+                {% endwith %}
             </div>
             <div class="row">
                 <div class="col-lg-3">
@@ -161,7 +184,7 @@
                         <a href="./index.html"><img src="img/logo.png" alt=""></a>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
@@ -271,7 +294,7 @@
     <!-- Categories Section End -->
 
     <!-- Featured Section Begin -->
-    <section class="featured spad">
+    <section class="featured spad d-none d-sm-block">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -301,7 +324,8 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="{{ url_for('users.single_mahsol' , slug = mahsol.slug) }}">{{mahsol.title}}</a></h6>
+                            <h6><a href="{{ url_for('users.single_mahsol' , slug = mahsol.slug) }}">{{mahsol.title}}</a>
+                            </h6>
                             <h5>{{mahsol.price}}</h5>
                         </div>
                     </div>
@@ -311,6 +335,57 @@
         </div>
     </section>
     <!-- Featured Section End -->
+    <!-- <section class="categories d-block d-sm-none">
+        <div class="container">
+            <div class="row">
+                <div class="categories__slider owl-carousel">
+                    {% for mahsol in all_mahsolat %}
+                    <div>
+                        <div class="categories__item set-bg" data-setbg="{{mahsol.image}}">
+                            <h5><a href="{{ url_for('users.single_mahsol' , slug = mahsol.slug) }}">{{mahsol.title}}</a></h5>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+
+
+<div class="row d-block d-sm-none" style="direction: rtl;">
+    <ul class="gallery" style="background-color: rgb(255, 255, 255);">
+        {% for mahsol in all_mahsolat %}
+        <li class="m">
+            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                <div class="featured__item">
+                    <div class="featured__item__pic set-bg" data-setbg="{{mahsol.image}}">
+                        <ul class="featured__item__pic__hover">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="featured__item__text">
+                        <h6><a href="{{ url_for('users.single_mahsol' , slug = mahsol.slug) }}">{{mahsol.title}}</a>
+                        </h6>
+                        <h5>{{mahsol.price}}</h5>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+        <!-- <li style="background: #f7ede2;"></li>
+        <li style="background: #f5cac3;"></li>
+        <li style="background: #84a59d;"></li>
+        <li style="background: #f28482;"></li> -->
+    </ul>
+</div>
+
+
+
+
+
 
     <!-- Banner Begin -->
     <div class="banner">
@@ -335,9 +410,9 @@
     <section class="latest-product spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6 col-6">
                     <div class="latest-product__text">
-                        <h4>Latest Products</h4>
+                        <h4>جدیدترین ها</h4><br><br>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
                                 <a href="#" class="latest-product__item">
@@ -400,9 +475,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6 col-6">
                     <div class="latest-product__text">
-                        <h4>Top Rated Products</h4>
+                        <h4>پربازدید ها</h4><br><br>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
                                 <a href="#" class="latest-product__item">
@@ -465,9 +540,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6 col-6">
                     <div class="latest-product__text">
-                        <h4>Review Products</h4>
+                        <h4>پرفروش ها</h4><br><br>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
                                 <a href="#" class="latest-product__item">
@@ -653,9 +728,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer__copyright">
-                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                        <div class="footer__copyright__text">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                                template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                    href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
                         <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
                     </div>
                 </div>
@@ -675,7 +757,37 @@
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 
+    <script>
+        const slider = document.querySelector('.gallery');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
 
+        slider.addEventListener('mousedown', e => {
+            isDown = true;
+            slider.classList.add('active');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', _ => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
+        slider.addEventListener('mouseup', _ => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
+        slider.addEventListener('mousemove', e => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const SCROLL_SPEED = 3;
+            const walk = (x - startX) * SCROLL_SPEED;
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+
+    </script>
 </body>
 
 </html>

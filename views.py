@@ -13,5 +13,5 @@ def index():
 @app.route('/<string:slug>')
 def single_group(slug):
     singlegroup = MahsolGroups.query.filter(MahsolGroups.title == slug).first_or_404()
-    mahsolat= Mahsolat.query.filter(Mahsolat.group == slug).all()
+    mahsolat= Mahsolat.query.filter(Mahsolat.group == slug).order_by(Mahsolat.id.desc()).all()
     return render_template('users/single_group.html' , singlegroup=singlegroup , mahsolat=mahsolat )
