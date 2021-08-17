@@ -1,9 +1,11 @@
+from mod_users.forms import BlogForm
 from flask_wtf import form
 from . import admin
 from flask import render_template, session , flash , redirect , url_for , request , abort
 from .utils import admin_only_view
 from mod_mahsolat.forms import MahsolatForms , MahsolgroupForms
 from mod_mahsolat.models import Mahsolat , MahsolGroups
+from mod_users.models import Blogs
 from app import db
 
 
@@ -172,5 +174,74 @@ def single_group(slug):
 
 
 
+
+
+@admin.route('/blogs' , methods=['GET', 'POST'])
+@admin_only_view
+def blogs():
+    form = BlogForm()
+    if not session.get('email'):
+        flash(' شما حساب کاربری ندارید. ابتدا در این صفحه وارد حساب کاربری تان شوید', category='bg-danger')
+        return redirect(url_for('users.login')) 
+    all_blogs = Blogs.query.order_by(Blogs.id.desc()).all()
+    
+    return render_template('admin/blog.html' , form=form , all_blogs=all_blogs)
+
+
+
+@admin.route('/create_blog/', methods=['GET', 'POST'])
+@admin_only_view
+def create_blog():
+    form = BlogForm() 
+    if request.method == 'POST':
+        if not session.get('email'):
+            flash(' شما حساب کاربری ندارید. ابتدا در این صفحه وارد حساب کاربری تان شوید', category='bg-danger')
+            return redirect(url_for('users.login')) 
+        
+        old_title = Blogs.query.filter(Blogs.title.ilike(form.blog_title.data)).first()
+        if old_title:
+            flash('عنوان مقاله تکراری میباشد' , 'bg-danger')
+            return redirect(url_for('admin.blogs'))
+        session['blog_title'] = request.form.get('blog_title')    
+        session['blog_writer'] = request.form.get('blog_writer')
+    
+    
+        if not session.get('blog_title'):
+            flash('لطفا فرم را کامل پر کنید', category='bg-danger')
+            return render_template('admin/blog.html' , form = form)
+    
+        if not session.get('blog_writer'):
+            flash('لطفا فرم را کامل پر کنید', category='bg-danger')
+            return render_template('admin/blog.html' , form = form)
+
+        return render_template('admin/create_blog.html' , form = form)
+
+
+
+@admin.route('/register_blog/', methods=['GET', 'POST'])
+@admin_only_view
+def register_blog():
+    form = BlogForm()
+    if request.method == 'POST':
+        if not session.get('email'):
+            flash(' شما حساب کاربری ندارید. ابتدا در این صفحه وارد حساب کاربری تان شوید', category='bg-danger')
+            return redirect(url_for('users.login')) 
+        old_title = Blogs.query.filter(Blogs.title.ilike(form.blog_title.data)).first()
+        if old_title:
+            flash('عنوان مقاله تکراری میباشد' , 'bg-danger')
+            return render_template('admin/mahsolat.html', form=form)
+        new_mahsol = Blogs()
+        new_mahsol.title = form.blog_title.data
+        new_mahsol.slug = form.blog_title.data
+        new_mahsol.image = form.blog_image.data
+        new_mahsol.metacontent = form.blog_metacontent.data
+        new_mahsol.content = form.blog_content.data
+        new_mahsol.writer = form.blog_writer.data
+        db.session.add(new_mahsol)
+        db.session.commit()
+        flash('مقاله با موفقیت ثبت شد', category='bg-success')
+        return redirect(url_for('admin.blogs'))
+    
+    return render_template('admin/create_mahsol.html' , form = form)
 
 

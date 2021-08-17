@@ -1,4 +1,6 @@
+from enum import unique
 from sqlalchemy import Column ,Integer , String
+from sqlalchemy.sql.expression import column
 from app import db
 from werkzeug.security import generate_password_hash , check_password_hash
 
@@ -19,3 +21,15 @@ class User(db.Model):
 
     def is_admin(self):
         return self.role == 1
+
+
+class Blogs(db.Model):
+    __tablename__='blog'
+    id = Column(Integer(), primary_key=True)
+    title = Column(String(128),nullable=False, unique=True)
+    image = Column(String(512) , nullable=False , unique= False)
+    slug = Column(String(128) , nullable=False , unique= True)
+    content = Column(String(3000), nullable=False, unique=False)
+    metacontent = Column(String(128), nullable=False, unique=False)
+    writer = Column(String(128) , nullable=False , unique= False)
+
