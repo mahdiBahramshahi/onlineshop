@@ -5,7 +5,7 @@ from .models import User
 from .forms import RegisterForm , LoginForm
 from app import db
 from mod_mahsolat.models import Mahsolat
-
+from mod_users.models import Blogs
 
 
 @users.route('/')
@@ -137,3 +137,8 @@ def single_mahsol(slug):
     # mahsol_name = File.query.filter(File.project_name == project.project_name)
     all_mahsolat = Mahsolat.query.order_by(Mahsolat.id.desc()).all()
     return render_template('users/single_mahsol.html' , mahsol=mahsol , all_mahsolat=all_mahsolat)
+
+@users.route('/<string:slug>')
+def single_blog(slug):
+    all_blog = Blogs.query.filter(Blogs.slug == slug).first_or_404()
+    return render_template('admin/single_blog.html' , all_blog=all_blog )

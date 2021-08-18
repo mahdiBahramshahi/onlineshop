@@ -245,3 +245,9 @@ def register_blog():
     return render_template('admin/create_mahsol.html' , form = form)
 
 
+@admin.route('/<string:slug>')
+@admin_only_view
+def single_blog(slug):
+    blog = Blogs.query.filter(Blogs.slug == slug).first_or_404()
+    # mahsol_name = File.query.filter(File.project_name == project.project_name)
+    return render_template('admin/single_blog.html' , blog=blog )

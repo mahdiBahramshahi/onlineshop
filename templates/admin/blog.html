@@ -278,7 +278,7 @@
                                     <li><i class="fa fa-calendar-o"></i>{{blog.date}}</li>
                                     <li><i class="fa fa-comment-o"></i> ۵</li>
                                 </ul>
-                                <h5><a href="#">{{blog.title}}</a></h5>
+                                <h5><a href="{{ url_for('admin.single_blog' , slug = blog.slug) }}">{{blog.title}}</a></h5>
                                 <p>{{blog.metacontent}}</p>
                             </div>
                         </div>
