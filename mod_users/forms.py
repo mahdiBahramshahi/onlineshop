@@ -22,3 +22,4 @@ class BlogForm(FlaskForm):
     blog_metacontent = StringField(validators=[DataRequired()])
     blog_writer = StringField(validators=[DataRequired()])
     blog_image = StringField(validators=[DataRequired()])
+    blog_date = StringField(validators=[DataRequired()])

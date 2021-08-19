@@ -138,7 +138,7 @@ def single_mahsol(slug):
     all_mahsolat = Mahsolat.query.order_by(Mahsolat.id.desc()).all()
     return render_template('users/single_mahsol.html' , mahsol=mahsol , all_mahsolat=all_mahsolat)
 
-@users.route('/<string:slug>')
+@users.route('/<string:slug>/')
 def single_blog(slug):
-    all_blog = Blogs.query.filter(Blogs.slug == slug).first_or_404()
-    return render_template('admin/single_blog.html' , all_blog=all_blog )
+    single_blog = Blogs.query.filter(Blogs.slug == slug).first_or_404()
+    return render_template('admin/single_blog.html' , single_blog=single_blog )

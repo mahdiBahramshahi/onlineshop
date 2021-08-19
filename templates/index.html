@@ -22,19 +22,50 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-<style>
+    <style>
         /* body{
             direction:rtl;
         } */
-        .gallery {
+        body{
+            background-color: white;
+        }
+
+
+        .gallery.c {
             padding: 1rem;
             display: grid;
-            grid-template-columns: repeat(10, 80vw);
+            grid-template-columns: repeat(15, 25vw);
             grid-template-rows: 1fr;
             grid-column-gap: 1rem;
             grid-row-gap: 1rem;
             overflow: scroll;
-            height: 70vh;
+            height: 440px;
+            scroll-snap-type: both mandatory left;
+            scroll-padding: 1rem;
+        }
+
+        .gallery.b {
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: repeat(15, 25vw);
+            grid-template-rows: 1fr;
+            grid-column-gap: 1rem;
+            grid-row-gap: 1rem;
+            overflow: scroll;
+            height: 460px;
+            scroll-snap-type: both mandatory left;
+            scroll-padding: 1rem;
+        }
+
+        .gallery.a {
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: repeat(15, 50vw);
+            grid-template-rows: 1fr;
+            grid-column-gap: 1rem;
+            grid-row-gap: 1rem;
+            overflow: scroll;
+            height: 450px;
             scroll-snap-type: both mandatory left;
             scroll-padding: 1rem;
         }
@@ -282,7 +313,7 @@
 
 
                 <div class="col-lg-3 d-none d-lg-block d-xl-none d-none d-xl-block"
-                    style="background-color: rgb(44, 156, 50);">
+                    style="background-color: rgb(129, 153, 24);">
                     <img src="https://s18.picofile.com/file/8439537426/%D9%BE%DB%8C%D8%B4%D9%86%D9%87%D8%A7%D8%AF_%D8%B4%DA%AF%D9%81%D8%AA_%D8%A7%D9%86%DA%AF%DB%8C%D8%B2.png"
                         alt="پیشنهاد شگفت انگیز ">
                 </div>
@@ -374,7 +405,7 @@
     <!-- Featured Section Begin -->
     <section class="featured spad d-none d-sm-block">
         <div class="container">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
                         <h2>Featured Product</h2>
@@ -389,8 +420,18 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-            <div class="row featured__filter">
+            </div> -->
+
+
+
+
+
+
+
+
+
+
+            <!-- <div class="row featured__filter">
                 {% for mahsol in all_mahsolat %}
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat ">
                     <div class="featured__item">
@@ -408,13 +449,108 @@
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+                {% endfor %} -->
 
-                            </div>
-                        </div>
+
+
+            </div>
+<!-- for lg -->
+
+
+<div class="d-none d-lg-block d-xl-none d-none d-xl-block" style="direction: rtl;">
+    <ul class="gallery c" style="background-color: rgb(21, 134, 46);">
+        <li class="m">
+            <div style="background-color: rgb(21, 134, 46);"
+                class="col-lg-12 col-md-12 col-sm-12 mix oranges fresh-meat">
+                <div class="featured__item">
+                    <img style="height: 380px;width: 100%;"
+                        src="https://s18.picofile.com/file/8439537426/%D9%BE%DB%8C%D8%B4%D9%86%D9%87%D8%A7%D8%AF_%D8%B4%DA%AF%D9%81%D8%AA_%D8%A7%D9%86%DA%AF%DB%8C%D8%B2.png"
+                        alt="">
+                </div>
+            </div>
+        </li>
+        {% for mahsol in all_mahsolat %}
+        <li class="m">
+            <div style="background-color: rgb(255, 255, 255);"
+                class="col-lg-12 col-md-12 col-sm-12 mix oranges fresh-meat rounded">
+                <div class="featured__item">
+                    <div class="featured__item__pic  set-bg rounded" data-setbg="{{mahsol.image}}">
+                        <ul class="featured__item__pic__hover">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="featured__item__text">
+                        <h6 style="font-size: small;" ><a href="{{ url_for('users.single_mahsol' , slug = mahsol.slug) }}">{{mahsol.title}}</a>
+                        </h6>
+                        <div class="product__discount__item__text">
+                        <!-- <h5></h5> --> <h6 class="rounded" style="color: white;background-color: red;width: 60px; direction: rtl;float: left;">۲۰%</h6>
+                        <div class="product__item__price"><span class="rounded" style="float: left;">{{mahsol.price}}</span><br>۱۰,۰۰۰ تومــان</div>
+                    </div>
                     </div>
                 </div>
             </div>
+        </li>
+        {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+
+            </div>
+            <div class="d-none d-md-block d-lg-none d-none d-sm-block d-md-none" style="direction: rtl;">
+                <ul class="gallery b" style="background-color: rgb(21, 134, 46);">
+                    <li class="m">
+                        <div style="background-color: rgb(21, 134, 46);"
+                            class="col-lg-12 col-md-12 col-sm-12 mix oranges fresh-meat">
+                            <div class="featured__item">
+                                <img style="height: 380px;width: 100%;"
+                                    src="https://s18.picofile.com/file/8439537426/%D9%BE%DB%8C%D8%B4%D9%86%D9%87%D8%A7%D8%AF_%D8%B4%DA%AF%D9%81%D8%AA_%D8%A7%D9%86%DA%AF%DB%8C%D8%B2.png"
+                                    alt="">
+                            </div>
+                        </div>
+                    </li>
+                    {% for mahsol in all_mahsolat %}
+                    <li class="m">
+                        <div style="background-color: rgb(255, 255, 255);"
+                            class="col-lg-12 col-md-12 col-sm-12 mix oranges fresh-meat rounded">
+                            <div class="featured__item">
+                                <div class="featured__item__pic  set-bg rounded" data-setbg="{{mahsol.image}}">
+                                    <ul class="featured__item__pic__hover">
+                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="featured__item__text">
+                                    <h6 style="font-size: small;" ><a href="{{ url_for('users.single_mahsol' , slug = mahsol.slug) }}">{{mahsol.title}}</a>
+                                    </h6>
+                                    <div class="product__discount__item__text">
+                                    <!-- <h5></h5> --> <h6 class="rounded" style="color: white;background-color: red;width: 60px; direction: rtl;float: left;">۲۰%</h6>
+                                    <div class="product__item__price"><span class="rounded" style="float: left;">{{mahsol.price}}</span><br>۱۰,۰۰۰ تومــان</div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+        
+        </div>
+        </div>
+        </div>
         </div>
     </section>
     <!-- Featured Section End -->
@@ -437,7 +573,7 @@
 
 
     <div class="row d-block d-sm-none " style="direction: rtl;">
-        <ul class="gallery" style="background-color: rgb(21, 134, 46);">
+        <ul class="gallery a" style="background-color: rgb(21, 134, 46);">
             <li class="m">
                 <div style="background-color: rgb(21, 134, 46);"
                     class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
@@ -453,7 +589,7 @@
                 <div style="background-color: rgb(255, 255, 255);"
                     class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat rounded">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg rounded" data-setbg="{{mahsol.image}}">
+                        <div class="featured__item__pic  set-bg rounded" data-setbg="{{mahsol.image}}">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -463,7 +599,10 @@
                         <div class="featured__item__text">
                             <h6><a href="{{ url_for('users.single_mahsol' , slug = mahsol.slug) }}">{{mahsol.title}}</a>
                             </h6>
-                            <h5>{{mahsol.price}}</h5>
+                            <div class="product__discount__item__text">
+                            <h6 class="rounded" style="color: white;background-color: red;width: 60px; direction: rtl;float: left;">۲۰%</h6>
+                            <div class="product__item__price"><span class="rounded" style="float: left;">{{mahsol.price}}</span><br>۱۰,۰۰۰ تومــان</div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -482,22 +621,22 @@
 
 
     <!-- Banner Begin -->
-    <div class="banner">
+    <!-- <div class="banner">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="img/banner/banner-1.jpg" alt="">
+                        <img src="https://preview.colorlib.com/theme/ogani/img/banner/xbanner-2.jpg.pagespeed.ic.-2eeuFVLcY.webp" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="img/banner/banner-2.jpg" alt="">
+                        <img src="https://preview.colorlib.com/theme/ogani/img/banner/xbanner-1.jpg.pagespeed.ic.aDN3QrExt6.webp" alt="">
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Banner End -->
 
     <!-- Latest Product Section Begin -->
@@ -730,8 +869,9 @@
                     </div>
                 </div>
             </div>
-            {% for blog in all_blogs %}
             <div class="row">
+            {% for blog in all_blogs %}
+            
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic">
@@ -742,17 +882,14 @@
                                 <li><i class="fa fa-calendar-o"></i>{{blog.date}}</li>
                                 <li><i class="fa fa-comment-o"></i> ۵</li>
                             </ul>
-                            <center>
-                                <h5><a href="{{ url_for('users.single_blog' , slug = blog.slug) }}">{{blog.title}}</a>
-                                </h5>
-                            </center>
+                            <h5><a href="{{ url_for('users.single_blog' , slug = blog.slug) }}">{{blog.title}}</a></h5>
                             <p>{{blog.metacontent}}</p>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
-
-            </div>
+            
+            {% endfor %}
+        </div>
         </div>
     </section>
     <!-- Blog Section End -->

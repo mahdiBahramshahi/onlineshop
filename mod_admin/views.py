@@ -166,11 +166,11 @@ def create_mahsol_group():
 
         
 
-@admin.route('/<string:slug>')
+@admin.route('/<string:slug>/')
 @admin_only_view
 def single_group(slug):
-    singlegroup = MahsolGroups.query.filter(MahsolGroups.title == slug).first_or_404()
-    return render_template('admin/single_group.html' , singlegroup=singlegroup )
+    all_group = MahsolGroups.query.filter(MahsolGroups.title == slug).first_or_404()
+    return render_template('admin/single_group.html' , all_group=all_group )
 
 
 
@@ -230,14 +230,15 @@ def register_blog():
         if old_title:
             flash('عنوان مقاله تکراری میباشد' , 'bg-danger')
             return render_template('admin/mahsolat.html', form=form)
-        new_mahsol = Blogs()
-        new_mahsol.title = form.blog_title.data
-        new_mahsol.slug = form.blog_title.data
-        new_mahsol.image = form.blog_image.data
-        new_mahsol.metacontent = form.blog_metacontent.data
-        new_mahsol.content = form.blog_content.data
-        new_mahsol.writer = form.blog_writer.data
-        db.session.add(new_mahsol)
+        new_blog = Blogs()
+        new_blog.title = form.blog_title.data
+        new_blog.slug = form.blog_title.data
+        new_blog.image = form.blog_image.data
+        new_blog.metacontent = form.blog_metacontent.data
+        new_blog.content = form.blog_content.data
+        new_blog.writer = form.blog_writer.data
+        new_blog.date = form.blog_date.data
+        db.session.add(new_blog)
         db.session.commit()
         flash('مقاله با موفقیت ثبت شد', category='bg-success')
         return redirect(url_for('admin.blogs'))
@@ -245,9 +246,9 @@ def register_blog():
     return render_template('admin/create_mahsol.html' , form = form)
 
 
-@admin.route('/<string:slug>')
+@admin.route('/ادمین/<string:slug>')
 @admin_only_view
 def single_blog(slug):
-    blog = Blogs.query.filter(Blogs.slug == slug).first_or_404()
+    single_blog = Blogs.query.filter(Blogs.slug == slug).first_or_404()
     # mahsol_name = File.query.filter(File.project_name == project.project_name)
-    return render_template('admin/single_blog.html' , blog=blog )
+    return render_template('admin/single_blog.html' , single_blog=single_blog )

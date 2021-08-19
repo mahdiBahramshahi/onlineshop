@@ -32,4 +32,5 @@ class Blogs(db.Model):
     content = Column(String(3000), nullable=False, unique=False)
     metacontent = Column(String(128), nullable=False, unique=False)
     writer = Column(String(128) , nullable=False , unique= False)
+    date = Column(String(32) , nullable=False , unique= False)
 
