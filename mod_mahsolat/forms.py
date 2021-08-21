@@ -16,3 +16,5 @@ class MahsolgroupForms(FlaskForm):
     group_name = TextField(validators=[DataRequired()])
     group_image = TextField(validators=[DataRequired()])
 
+class SearchForm(FlaskForm):
+    search_query = TextField(validators=[DataRequired()])

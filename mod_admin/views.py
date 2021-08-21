@@ -14,7 +14,10 @@ from app import db
 @admin_only_view
 def index():
     # form = MahsolatForms()
-    return render_template('admin/index.html')
+    len_mahsolat = len(Mahsolat.query.order_by(Mahsolat.id.desc()).all())
+    len_blogs = len(Blogs.query.order_by(Blogs.id.desc()).all())
+    len_group = len(MahsolGroups.query.order_by(MahsolGroups.id.desc()).all())
+    return render_template('admin/index.html', len_mahsolat=len_mahsolat , len_blogs=len_blogs , len_group=len_group)
 
 
 

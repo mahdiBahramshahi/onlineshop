@@ -141,4 +141,4 @@ def single_mahsol(slug):
 @users.route('/<string:slug>/')
 def single_blog(slug):
     single_blog = Blogs.query.filter(Blogs.slug == slug).first_or_404()
-    return render_template('admin/single_blog.html' , single_blog=single_blog )
+    return render_template('users/single_blog.html' , single_blog=single_blog )

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="تحفه سلامتی ، بزرگترین فروشنده محصولات ارگانیک با بالاترین کیفیت و قیمت مناسب">
-    <title>onlineshop</title>
+    <title>تحفه سلامتی | فروشگاه اینترنتی | محصولات ارگانیک</title>
 
     <!-- Google Font -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet"> -->
@@ -26,7 +26,7 @@
         /* body{
             direction:rtl;
         } */
-        body{
+        body {
             background-color: white;
         }
 
@@ -34,12 +34,13 @@
         .gallery.c {
             padding: 1rem;
             display: grid;
-            grid-template-columns: repeat(15, 25vw);
+            grid-template-columns: repeat(15, 20vw);
             grid-template-rows: 1fr;
             grid-column-gap: 1rem;
             grid-row-gap: 1rem;
             overflow: scroll;
-            height: 440px;
+            /* height: 440px; */
+            height: 100%;
             scroll-snap-type: both mandatory left;
             scroll-padding: 1rem;
         }
@@ -47,12 +48,13 @@
         .gallery.b {
             padding: 1rem;
             display: grid;
-            grid-template-columns: repeat(15, 25vw);
+            grid-template-columns: repeat(15, 30vw);
             grid-template-rows: 1fr;
             grid-column-gap: 1rem;
             grid-row-gap: 1rem;
             overflow: scroll;
-            height: 460px;
+            /* height: 460px; */
+            height: 100%;
             scroll-snap-type: both mandatory left;
             scroll-padding: 1rem;
         }
@@ -60,12 +62,13 @@
         .gallery.a {
             padding: 1rem;
             display: grid;
-            grid-template-columns: repeat(15, 50vw);
+            grid-template-columns: repeat(15, 40vw);
             grid-template-rows: 1fr;
             grid-column-gap: 1rem;
             grid-row-gap: 1rem;
             overflow: scroll;
-            height: 450px;
+            height:250px;
+            /* height: 100%; */
             scroll-snap-type: both mandatory left;
             scroll-padding: 1rem;
         }
@@ -324,12 +327,12 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#" style="direction: rtl;">
+                            <form action="{{url_for('mahsolat.search_mahsol')}}" method="GET" style="direction: rtl;">
                                 <!-- <div class="hero__search__categories">
                                     All Categories
                                     <span class="arrow_carrot-down"></span>
                                 </div> -->
-                                <input style="direction: ltr;" type="text" placeholder="چی نیاز داری؟">
+                                <input name="search_query" style="direction: ltr;" type="text" placeholder="چی نیاز داری؟">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
@@ -385,7 +388,7 @@
     <!-- Hero Section End -->
 
     <!-- Categories Section Begin -->
-    <section class="categories">
+    <section class="categories d-none d-sm-block">
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
@@ -453,105 +456,112 @@
 
 
 
-            </div>
-<!-- for lg -->
+        </div>
+        <!-- for lg -->
 
 
-<div class="d-none d-lg-block d-xl-none d-none d-xl-block" style="direction: rtl;">
-    <ul class="gallery c" style="background-color: rgb(21, 134, 46);">
-        <li class="m">
-            <div style="background-color: rgb(21, 134, 46);"
-                class="col-lg-12 col-md-12 col-sm-12 mix oranges fresh-meat">
-                <div class="featured__item">
-                    <img style="height: 380px;width: 100%;"
-                        src="https://s18.picofile.com/file/8439537426/%D9%BE%DB%8C%D8%B4%D9%86%D9%87%D8%A7%D8%AF_%D8%B4%DA%AF%D9%81%D8%AA_%D8%A7%D9%86%DA%AF%DB%8C%D8%B2.png"
-                        alt="">
-                </div>
-            </div>
-        </li>
-        {% for mahsol in all_mahsolat %}
-        <li class="m">
-            <div style="background-color: rgb(255, 255, 255);"
-                class="col-lg-12 col-md-12 col-sm-12 mix oranges fresh-meat rounded">
-                <div class="featured__item">
-                    <div class="featured__item__pic  set-bg rounded" data-setbg="{{mahsol.image}}">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
+        <div class="d-none d-lg-block d-xl-none d-none d-xl-block" style="direction: rtl;">
+            <ul class="gallery c" style="background-color: rgb(21, 134, 46);">
+                <li class="m">
+                    <div style="background-color: rgb(21, 134, 46);height: 100%;"
+                        class="col-lg-12 col-md-12 col-sm-12 mix oranges fresh-meat">
+                        <!-- <div class="featured__item"> -->
+                            <img style="height: 100%;width: 100%;"
+                                src="https://s18.picofile.com/file/8439537426/%D9%BE%DB%8C%D8%B4%D9%86%D9%87%D8%A7%D8%AF_%D8%B4%DA%AF%D9%81%D8%AA_%D8%A7%D9%86%DA%AF%DB%8C%D8%B2.png"
+                                alt="">
+                        <!-- </div> -->
                     </div>
-                    <div class="featured__item__text">
-                        <h6 style="font-size: small;" ><a href="{{ url_for('users.single_mahsol' , slug = mahsol.slug) }}">{{mahsol.title}}</a>
-                        </h6>
-                        <div class="product__discount__item__text">
-                        <!-- <h5></h5> --> <h6 class="rounded" style="color: white;background-color: red;width: 60px; direction: rtl;float: left;">۲۰%</h6>
-                        <div class="product__item__price"><span class="rounded" style="float: left;">{{mahsol.price}}</span><br>۱۰,۰۰۰ تومــان</div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </li>
-        {% endfor %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                
-
-
-            </div>
-            <div class="d-none d-md-block d-lg-none d-none d-sm-block d-md-none" style="direction: rtl;">
-                <ul class="gallery b" style="background-color: rgb(21, 134, 46);">
-                    <li class="m">
-                        <div style="background-color: rgb(21, 134, 46);"
-                            class="col-lg-12 col-md-12 col-sm-12 mix oranges fresh-meat">
-                            <div class="featured__item">
-                                <img style="height: 380px;width: 100%;"
-                                    src="https://s18.picofile.com/file/8439537426/%D9%BE%DB%8C%D8%B4%D9%86%D9%87%D8%A7%D8%AF_%D8%B4%DA%AF%D9%81%D8%AA_%D8%A7%D9%86%DA%AF%DB%8C%D8%B2.png"
-                                    alt="">
+                </li>
+                {% for mahsol in all_mahsolat %}
+                <li class="m">
+                    <a href="{{ url_for('users.single_mahsol' , slug = mahsol.slug) }}">
+                    <div style="background-color: rgb(255, 255, 255); float: right;height: 100%;"
+                        class="col-lg-12 col-md-12 col-sm-12 mix oranges fresh-meat rounded">
+                        <div class="featured__item">
+                            <div class="featured__item__pic  set-bg rounded" data-setbg="{{mahsol.image}}">
+                                <!-- <ul class="featured__item__pic__hover">
+                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul> -->
                             </div>
-                        </div>
-                    </li>
-                    {% for mahsol in all_mahsolat %}
-                    <li class="m">
-                        <div style="background-color: rgb(255, 255, 255);"
-                            class="col-lg-12 col-md-12 col-sm-12 mix oranges fresh-meat rounded">
-                            <div class="featured__item">
-                                <div class="featured__item__pic  set-bg rounded" data-setbg="{{mahsol.image}}">
-                                    <ul class="featured__item__pic__hover">
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="featured__item__text">
-                                    <h6 style="font-size: small;" ><a href="{{ url_for('users.single_mahsol' , slug = mahsol.slug) }}">{{mahsol.title}}</a>
-                                    </h6>
-                                    <div class="product__discount__item__text">
-                                    <!-- <h5></h5> --> <h6 class="rounded" style="color: white;background-color: red;width: 60px; direction: rtl;float: left;">۲۰%</h6>
-                                    <div class="product__item__price"><span class="rounded" style="float: left;">{{mahsol.price}}</span><br>۱۰,۰۰۰ تومــان</div>
-                                </div>
+                            <div class="featured__item__text">
+                                <h6 style="font-size: small;float: right;">{{mahsol.title}}</a>
+                                </h6>
+                                <div class="product__discount__item__text">
+                                    <!-- <h5></h5> -->
+                                    
+                                    <h6 class="rounded"
+                                        style="color: white;background-color: red;width: 60px; direction: rtl;float: left;">
+                                        ۲۰%</h6>
+                                    <div style="float: left;" class="product__item__price"><span
+                                            class="rounded">{{mahsol.price}}</span><br>۱۰,۰۰۰ تومــان</div>
                                 </div>
                             </div>
                         </div>
-                    </li>
-                    {% endfor %}
-        
+                    </div>
+                </li>
+                {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
-        </div>
-        </div>
-        </div>
+        <div class="d-none d-md-block d-lg-none d-none d-sm-block d-md-none" style="direction: rtl;">
+            <ul class="gallery b" style="background-color: rgb(21, 134, 46);">
+                <li class="m">
+                    <div style="background-color: rgb(21, 134, 46);height: 100%;"
+                        class="col-lg-12 col-md-12 col-sm-12 mix oranges fresh-meat">
+                        <!-- <div class="featured__item"> -->
+                            <img style="height: 100%;width: 100%;"
+                                src="https://s18.picofile.com/file/8439537426/%D9%BE%DB%8C%D8%B4%D9%86%D9%87%D8%A7%D8%AF_%D8%B4%DA%AF%D9%81%D8%AA_%D8%A7%D9%86%DA%AF%DB%8C%D8%B2.png"
+                                alt="">
+                        <!-- </div> -->
+                    </div>
+                </li>
+                {% for mahsol in all_mahsolat %}
+                <li class="m">
+                    <a href="{{ url_for('users.single_mahsol' , slug = mahsol.slug) }}">
+                    <div style="background-color: rgb(255, 255, 255);height: 100%;"
+                        class="col-lg-12 col-md-12 col-sm-12 mix oranges fresh-meat rounded">
+                        <div class="featured__item">
+                            <div class="featured__item__pic  set-bg rounded" data-setbg="{{mahsol.image}}">
+                                <!-- <ul class="featured__item__pic__hover">
+                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul> -->
+                            </div>
+                            <div class="featured__item__text">
+                                <h6 style="font-size: small;float: right;">{{mahsol.title}}
+                                </h6>
+                                <div class="product__discount__item__text">
+                                    <!-- <h5></h5> -->
+                                    <h6 class="rounded"
+                                        style="color: white;background-color: red;width: 60px; direction: rtl;float: left;">
+                                        ۲۰%</h6>
+                                    <div class="product__item__price"><span class="rounded"
+                                            style="float: left;">{{mahsol.price}}</span><br>۱۰,۰۰۰ تومــان</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div></a>
+                </li>
+                {% endfor %}
+
     </section>
     <!-- Featured Section End -->
     <!-- <section class="categories d-block d-sm-none">
@@ -572,52 +582,95 @@
 
 
 
-    <div class="row d-block d-sm-none " style="direction: rtl;">
+    <div class="row d-block d-sm-none " style="direction: rtl;width: 100%;height: 100%;">
         <ul class="gallery a" style="background-color: rgb(21, 134, 46);">
             <li class="m">
                 <div style="background-color: rgb(21, 134, 46);"
                     class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                    <div class="featured__item">
-                        <img style="height: 350px;width: 100%;"
+                    <!-- <div class="featured__item"> -->
+                        <img style="height: 200px;width: 100%;"
                             src="https://s18.picofile.com/file/8439537426/%D9%BE%DB%8C%D8%B4%D9%86%D9%87%D8%A7%D8%AF_%D8%B4%DA%AF%D9%81%D8%AA_%D8%A7%D9%86%DA%AF%DB%8C%D8%B2.png"
                             alt="">
-                    </div>
+                    <!-- </div> -->
                 </div>
             </li>
             {% for mahsol in all_mahsolat %}
             <li class="m">
+                <a href="{{ url_for('users.single_mahsol' , slug = mahsol.slug) }}">
                 <div style="background-color: rgb(255, 255, 255);"
                     class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat rounded">
                     <div class="featured__item">
-                        <div class="featured__item__pic  set-bg rounded" data-setbg="{{mahsol.image}}">
-                            <ul class="featured__item__pic__hover">
+                        <div style="height: 100px;width: 100%;" class="featured__item__pic  set-bg rounded" data-setbg="{{mahsol.image}}">
+                            <!-- <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
+                            </ul> -->
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="{{ url_for('users.single_mahsol' , slug = mahsol.slug) }}">{{mahsol.title}}</a>
+                            <h6 style="font-size: x-small;float: right;">{{mahsol.title}}
                             </h6>
                             <div class="product__discount__item__text">
-                            <h6 class="rounded" style="color: white;background-color: red;width: 60px; direction: rtl;float: left;">۲۰%</h6>
-                            <div class="product__item__price"><span class="rounded" style="float: left;">{{mahsol.price}}</span><br>۱۰,۰۰۰ تومــان</div>
-                        </div>
+                                <h6 class="rounded"
+                                    style="color: white;background-color: red;width: 25px; direction: rtl;float: left; font-size: x-small;">
+                                    ۲۰%</h6>
+                                <div style="font-size:small;" class="product__item__price"><span class="rounded"
+                                        style="float: left;font-size: x-small;">{{mahsol.price}}</span><br><br> ۱۰,۰۰۰ تومــان</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </div></a>
             </li>
             {% endfor %}
-            <!-- <li style="background: #f7ede2;"></li>
-        <li style="background: #f5cac3;"></li>
-        <li style="background: #84a59d;"></li>
-        <li style="background: #f28482;"></li> -->
         </ul>
     </div>
 
 
 
-
+    <section class="featured spad d-block d-sm-none">
+        <div class="row d-block d-sm-none " style="direction: rtl;width: 100%;height: 100%;">
+            <ul class="gallery a" style="background-color: rgb(21, 134, 46);">
+                <li class="m">
+                    <div style="background-color: rgb(21, 134, 46);"
+                        class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                        <!-- <div class="featured__item"> -->
+                            <img style="height: 200px;width: 100%;"
+                                src="https://s18.picofile.com/file/8439537426/%D9%BE%DB%8C%D8%B4%D9%86%D9%87%D8%A7%D8%AF_%D8%B4%DA%AF%D9%81%D8%AA_%D8%A7%D9%86%DA%AF%DB%8C%D8%B2.png"
+                                alt="">
+                        <!-- </div> -->
+                    </div>
+                </li>
+                {% for mahsol in all_mahsolat %}
+                <li class="m">
+                    <a href="{{ url_for('users.single_mahsol' , slug = mahsol.slug) }}">
+                    <div style="background-color: rgb(255, 255, 255);"
+                        class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat rounded">
+                        <div class="featured__item">
+                            <div style="height: 100px;width: 100%;" class="featured__item__pic  set-bg rounded" data-setbg="{{mahsol.image}}">
+                                <!-- <ul class="featured__item__pic__hover">
+                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul> -->
+                            </div>
+                            <div class="featured__item__text">
+                                <h6 style="font-size: x-small;float: right;">{{mahsol.title}}
+                                </h6>
+                                <div class="product__discount__item__text">
+                                    <h6 class="rounded"
+                                        style="color: white;background-color: red;width: 25px; direction: rtl;float: left; font-size: x-small;">
+                                        ۲۰%</h6>
+                                    <div style="font-size:small;" class="product__item__price"><span class="rounded"
+                                            style="float: left;font-size: x-small;">{{mahsol.price}}</span><br><br> ۱۰,۰۰۰ تومــان</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
 
 
     <!-- Banner Begin -->
@@ -870,8 +923,8 @@
                 </div>
             </div>
             <div class="row">
-            {% for blog in all_blogs %}
-            
+                {% for blog in all_blogs %}
+
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic">
@@ -887,9 +940,9 @@
                         </div>
                     </div>
                 </div>
-            
-            {% endfor %}
-        </div>
+
+                {% endfor %}
+            </div>
         </div>
     </section>
     <!-- Blog Section End -->
